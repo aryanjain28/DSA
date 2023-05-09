@@ -66,6 +66,23 @@ class BST:
                 else:
                     self.add(current.left, val)
 
+    def search(self, current, target):
+
+        if not current:
+            return False
+        
+        def find(current, target):        
+            if current.val > target:
+                return self.search(current.left, target)
+            elif current.val < target:
+                return self.search(current.right, target)
+            
+            return True
+            
+        return find(current, target)
+
+
+
 
 bst = BST(7)
 root = bst.root
@@ -81,3 +98,5 @@ bst.add(root, 13)
 # bst.preorder_t(root)
 # bst.inorder_t(root)
 bst.postorder_t(root)
+
+print(bst.search(None, 5))
