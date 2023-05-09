@@ -44,7 +44,7 @@ class BST:
         if not current:
             return
 
-        #  right visit left 
+        #  right visit left
         self.postorder_t(current.right)
         print(current.val, ", ", end="")
         self.postorder_t(current.left)
@@ -70,18 +70,46 @@ class BST:
 
         if not current:
             return False
-        
-        def find(current, target):        
+
+        def find(current, target):
             if current.val > target:
                 return self.search(current.left, target)
             elif current.val < target:
                 return self.search(current.right, target)
-            
+
             return True
-            
+
         return find(current, target)
 
+    def minimum(self, current):
 
+        if current == None:
+            return "Invalid"
+
+        if current.left == None:
+            return current.val
+
+        return self.minimum(current.left)
+    
+    def minimum(self, current):
+
+        if current == None:
+            return "Invalid"
+
+        if current.left == None:
+            return current.val
+
+        return self.minimum(current.left)
+    
+    def maximum(self, current):
+
+        if current == None:
+            return "Invalid"
+        
+        if current.right == None:
+            return current.val
+        
+        return self.maximum(current.right)
 
 
 bst = BST(7)
@@ -100,3 +128,6 @@ bst.add(root, 13)
 bst.postorder_t(root)
 
 print(bst.search(None, 5))
+
+print(bst.minimum(root))
+print(bst.maximum(root))
