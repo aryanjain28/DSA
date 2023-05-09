@@ -90,7 +90,7 @@ class BST:
             return current.val
 
         return self.minimum(current.left)
-    
+
     def minimum(self, current):
 
         if current == None:
@@ -100,16 +100,58 @@ class BST:
             return current.val
 
         return self.minimum(current.left)
-    
+
     def maximum(self, current):
 
         if current == None:
             return "Invalid"
-        
+
         if current.right == None:
             return current.val
-        
+
         return self.maximum(current.right)
+
+    def minimum_non_recursive(self):
+        if not self.root:
+            return
+
+        current = self.root
+        while current.left:
+            current = current.left
+
+        return current.val
+
+    def maxiumu_non_recursive(self):
+
+        if not self.root:
+            return
+
+        current = self.root
+        while current.right:
+            current = current.right
+
+        return current.val
+
+    # case 1: node-to-remove has 0 or 1 child
+    # case 2: node-to-remove has 2 children
+
+    def remove(self, current, target):
+        if not current:
+            return current
+
+        if target > current.val:
+            current.right = self.remove(current.right, target)
+        elif target < current.val:
+            current.left = self.remove(current.left, target)
+        else:
+            if current.left and current.right:      # 2 child
+                pass
+            elif current.left or current.right:     # 1 child
+                return current.left if current.left else current.right
+            else:                                   # 0 child
+                return None
+
+        return current
 
 
 bst = BST(7)
@@ -130,4 +172,30 @@ bst.postorder_t(root)
 print(bst.search(None, 5))
 
 print(bst.minimum(root))
+print(bst.minimum_non_recursive())
+
 print(bst.maximum(root))
+print(bst.maxiumu_non_recursive())
+
+bst = BST(3)
+root = bst.root
+
+bst.add(root, 1)
+bst.add(root, 4)
+bst.add(root, 0)
+bst.add(root, 2)
+bst.add(root, 5)
+
+bst.inorder_t(root)
+
+bst.remove(root, 4)
+bst.remove(root, 5)
+bst.remove(root, 0)
+bst.remove(root, 2)
+bst.remove(root, 1)
+
+
+
+print()
+
+bst.inorder_t(root)
