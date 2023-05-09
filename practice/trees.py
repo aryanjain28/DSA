@@ -16,6 +16,7 @@ class Node:
 class BST:
     def __init__(self, val) -> None:
         self.root = Node(val)
+        self.queue = []
 
     def preorder_t(self, current):
 
@@ -162,6 +163,30 @@ class BST:
                 return None
 
         return current
+    
+    def bfs(self, current):
+
+        if current == None:
+            return
+
+        print(current.val, end="-")
+        if current.left:
+            self.queue.append(current.left)
+        if current.right:
+            self.queue.append(current.right)
+
+        # print([a.val for a in self.queue])
+
+        if self.queue.__len__() < 1:
+            return
+
+        current = self.queue[0]
+        self.queue = self.queue[1:]
+        self.bfs(current)
+            
+        
+
+        
 
 
 bst = BST(7)
@@ -177,31 +202,31 @@ bst.add(root, 13)
 
 # bst.preorder_t(root)
 # bst.inorder_t(root)
-bst.postorder_t(root)
+# bst.postorder_t(root)
 
-print(bst.search(None, 5))
+# print(bst.search(None, 5))
 
-print(bst.minimum(root))
-print(bst.minimum_non_recursive())
+# print(bst.minimum(root))
+# print(bst.minimum_non_recursive())
 
-print(bst.maximum(root))
-print(bst.maxiumu_non_recursive())
+# print(bst.maximum(root))
+# print(bst.maxiumu_non_recursive())
 
-bst = BST(3)
-root = bst.root
+# bst = BST(3)
+# root = bst.root
 
-bst.add(root, 1)
-bst.add(root, 4)
-bst.add(root, 0)
-bst.add(root, 2)
-bst.add(root, 5)
+# bst.add(root, 1)
+# bst.add(root, 4)
+# bst.add(root, 0)
+# bst.add(root, 2)
+# bst.add(root, 5)
 
-bst.inorder_t(root)
+# bst.inorder_t(root)
 
-bst.remove(root, 1)
-print()
+# bst.remove(root, 1)
+# print()
 
-bst.inorder_t(root)
+# bst.inorder_t(root)
 
 
 
