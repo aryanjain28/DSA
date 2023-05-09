@@ -23,7 +23,7 @@ class BST:
             return
 
         # visit left right
-        print(current.val, ", ", end="")
+        print(current.val, end="-")
         self.preorder_t(current.left)
         self.preorder_t(current.right)
 
@@ -35,7 +35,7 @@ class BST:
 
         #  left visit right
         self.inorder_t(current.left)
-        print(current.val, ", ", end="")
+        print(current.val, end="-")
         self.inorder_t(current.right)
 
     # Descending Order.
@@ -46,7 +46,7 @@ class BST:
 
         #  right visit left
         self.postorder_t(current.right)
-        print(current.val, ", ", end="")
+        print(current.val, end="-")
         self.postorder_t(current.left)
 
     def add(self, current, val):
@@ -145,7 +145,17 @@ class BST:
             current.left = self.remove(current.left, target)
         else:
             if current.left and current.right:      # 2 child
-                pass
+
+                leftChild = current.left
+                rightChild = current.right
+
+                current = rightChild
+                while current.left:
+                    current = current.left
+                current.left = leftChild
+
+                return rightChild
+
             elif current.left or current.right:     # 1 child
                 return current.left if current.left else current.right
             else:                                   # 0 child
@@ -188,14 +198,16 @@ bst.add(root, 5)
 
 bst.inorder_t(root)
 
-bst.remove(root, 4)
-bst.remove(root, 5)
-bst.remove(root, 0)
-bst.remove(root, 2)
 bst.remove(root, 1)
-
-
-
 print()
 
 bst.inorder_t(root)
+
+
+
+# bst.remove(root, 4)
+# bst.remove(root, 5)
+# bst.remove(root, 0)
+# bst.remove(root, 2)
+# bst.remove(root, 1)
+
