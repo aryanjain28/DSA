@@ -20,11 +20,31 @@ class Heap:
         index = len(self.heap) - 1
 
         while self.heap[index // 2] > self.heap[index]:
-            self.heap[index], self.heap[index // 2] = self.heap[index // 2], self.heap[index]
+            self.heap[index],
+            self.heap[index // 2] = self.heap[index // 2], self.heap[index]
             index = index // 2
 
-    def pop(self, val) -> int:
-        pass
+    def pop(self) -> int:
+
+        self.heap[1], self.heap[-1] = self.heap[-1], self.heap[1]
+        popval = self.heap.pop()
+
+        index = 1
+        while self.heap[index] > self.heap[index * 2] or self.heap[index] > self.heap[(index * 2) + 1]:
+
+            if self.heap[index * 2] > self.heap[index * 2 + 1]:
+                index2 = index * 2 + 1
+            elif self.heap[index * 2] < self.heap[index * 2 + 1]:
+                index2 = index * 2
+
+            self.heap[index], self.heap[index2] = self.heap[index2], self.heap[index]
+            index = index2
+
+            if index * 2 >= len(self.heap):
+                break
+
+        return popval
+
 
 heap = Heap()
 heap.push(14)
@@ -37,4 +57,4 @@ heap.push(68)
 heap.push(10)
 
 
-print(heap.heap)
+print(heap.pop())
