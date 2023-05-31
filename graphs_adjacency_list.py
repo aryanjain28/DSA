@@ -32,3 +32,32 @@ def dfs(src, dest):
 
 
 print(dfs("A", "E"))
+
+
+def bfs(src, dest):
+
+    length = 0
+    queue = []
+    queue.append(src)
+    visit = set()
+
+    while queue:
+
+        for _ in range(len(queue)):
+            node = queue.pop(0)
+
+            if node == dest:
+                return length
+
+            for n in adjList[node]:
+                if n not in visit:
+                    queue.append(n)
+                    visit.add(node)
+
+        length += 1
+
+    return length
+
+
+adjList["A"] += ["D"]
+print(bfs("A", "D"))
