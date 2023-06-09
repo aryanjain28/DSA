@@ -13,16 +13,19 @@
 class Heap:
 
     def __init__(self) -> None:
-        self.heap = [0]
+        self.heap = []
 
     def push(self, val) -> None:
         self.heap.append(val)
-        index = len(self.heap) - 1
+        i = len(self.heap) - 1
 
-        while self.heap[index // 2] > self.heap[index]:
-            self.heap[index],
-            self.heap[index // 2] = self.heap[index // 2], self.heap[index]
-            index = index // 2
+        # parent > last_appended_val => swap with parent
+        while self.heap[i // 2] > self.heap[i]:
+            self.heap[i], self.heap[i // 2] = self.heap[i // 2], self.heap[i]
+            i = i // 2
+
+        print("Val: ", val)
+        print("sleself.heap: ", self.heap)
 
     def heapify(self):
 
@@ -32,11 +35,12 @@ class Heap:
             # check if it has right child, meaning it has both child?
             if index*2+1 < LEN:
                 # check for minimum
-                if  self.heap[index*2] < self.heap[index*2+1] and self.heap[index*2] < self.heap[index]:
+                if self.heap[index*2] < self.heap[index*2+1] and self.heap[index*2] < self.heap[index]:
                     self.heap[index*2], self.heap[index] = self.heap[index], self.heap[index*2]
                     index *= 2
                 elif self.heap[index*2] > self.heap[index*2+1] and self.heap[index*2+1] < self.heap[index]:
-                    self.heap[index*2+1], self.heap[index] = self.heap[index], self.heap[index*2+1]
+                    self.heap[index*2 +
+                              1], self.heap[index] = self.heap[index], self.heap[index*2+1]
                     index = index * 2 + 1
                 else:
                     break
@@ -49,18 +53,18 @@ class Heap:
 
     def pop(self) -> int:
 
-        self.heap[1], self.heap[-1] = self.heap[-1], self.heap[1]
+        self.heap[0], self.heap[-1] = self.heap[-1], self.heap[0]
         popval = self.heap.pop()
         self.heapify()
         return popval
 
 
 heap = Heap()
+heap.push(21)
+heap.push(26)
 heap.push(14)
 heap.push(19)
 heap.push(16)
-heap.push(21)
-heap.push(26)
 heap.push(19)
 heap.push(68)
 heap.push(10)
