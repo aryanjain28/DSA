@@ -33,10 +33,10 @@ def minimumSpanningTree(edges, n):
             continue
 
         uf.union(n1, n2)
-        mst.append((n1, n2))
+        mst.append((wt, n1, n2))
         mst_sum += wt
 
-    print(mst, mst_sum)
+    print(sum([p for p, _, _ in mst]), mst_sum)
 
 
 edges = [
