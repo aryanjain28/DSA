@@ -52,13 +52,11 @@ res = countPaths2()
 diff2 = time() - start_time
 print("# ways: ", res, " Time taken with cache: ", diff2)
 
-print(abs(diff1 - diff2))
-
 
 # Bottom Up approach
 
-n = 4
-m = 4
+n = 10
+m = 10
 
 
 def countPaths3():
@@ -77,4 +75,9 @@ def countPaths3():
     return r2[0]
 
 
-print(countPaths3())
+start_time = time()
+res = countPaths3()
+diff3 = time() - start_time
+print("# ways: ", res, " Time taken with cache: ", diff3)
+
+print(min(diff1, diff2, diff3))
