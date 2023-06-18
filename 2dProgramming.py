@@ -3,6 +3,8 @@ from time import time
 
 # Brute force way!
 
+n = 10
+
 
 def countPaths(row: int = 0, col: int = 0) -> int:
 
@@ -16,16 +18,18 @@ def countPaths(row: int = 0, col: int = 0) -> int:
 
 
 start_time = time()
-n = 4
-countPaths()
+res = countPaths()
 diff1 = time() - start_time
-print("Time taken without cache: ", diff1)
+print("# ways: ", res, " Time taken without cache: ", diff1)
 
 
 # Memoization
 # Top Down Approach
 
 cache = {}
+
+
+n = 10
 
 
 def countPaths2(row: int = 0, col: int = 0) -> int:
@@ -44,9 +48,8 @@ def countPaths2(row: int = 0, col: int = 0) -> int:
 
 
 start_time = time()
-n = 4
-countPaths2()
+res = countPaths2()
 diff2 = time() - start_time
-print("Time taken with cache: ", diff2)
+print("# ways: ", res, " Time taken with cache: ", diff2)
 
-print(cache)
+print(abs(diff1 - diff2))
