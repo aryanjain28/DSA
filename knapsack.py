@@ -1,10 +1,10 @@
 
 
-def knapSackMax(profit, weight, capacity):
+def knapSackMax(profit: list[int], weight: list[int], capacity: int) -> int:
 
     cache = {}
 
-    def track(index, cap):
+    def track(index: int, cap: int) -> int:
 
         if index == len(profit):
             return 0
@@ -20,7 +20,7 @@ def knapSackMax(profit, weight, capacity):
         if cap-weight[index] >= 0:
             p2 = profit[index] + track(index+1, cap-weight[index])
 
-        cache[(index, cap)] = max(p1, p2)
+        cache[(index, cap)] = p1 if p1 > p2 else p2
         return cache[(index, cap)]
 
     return track(0, capacity)
