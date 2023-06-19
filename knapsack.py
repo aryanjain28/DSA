@@ -32,3 +32,28 @@ print(knapSackMax(
     8
 )
 )
+
+
+# True dp
+
+def knapSack(profit: list[int], weight: list[int], capacity: int) -> int:
+
+    N = len(profit)
+    M = capacity
+
+    matrix = [[0] * (M + 1) for _ in range(N)]
+
+    for index, _ in enumerate(matrix[0]):
+        if index >= weight[0]:
+            matrix[0][index] = profit[0]
+
+    for item in range(1, N):
+        for cap in range(1, M+1):
+            included = profit[item] + matrix[item-1][cap-weight[item]] if cap >= weight[item] else 0
+            matrix[item][cap] = max(matrix[item-1][cap], included)
+
+    print(matrix)
+    return matrix[-1][-1]
+
+
+knapSack([4, 4, 7, 1], [5, 2, 3, 1], 8)
