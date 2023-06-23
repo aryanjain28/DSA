@@ -79,7 +79,27 @@ def knapsack_unbounded_tabulation_space_op(profits: list[int], weights: list[int
     return T2[-1]
 
 
-knapsack_unbounded_tabulation_space_op([4, 4, 7, 1], [5, 2, 3, 1], 8)
+# knapsack_unbounded_tabulation_space_op([4, 4, 7, 1], [5, 2, 3, 1], 8)
+
+
+# True Dynamic Solution: Space Optimized -> Using one row
+def knapsack_unbounded_tabulation_space_op_2(profits: list[int], weights: list[int], capacity: int) -> int:
+
+    M = len(profits)  # rows
+    N = capacity  # columns
+    T = [0] * (capacity + 1)
+
+    for index in range(M+1):
+        for currCap in range(N+1):
+            if currCap >= weights[index-1]:
+                include = profits[index-1] + T[currCap-weights[index-1]]
+                T[currCap] = max(T[currCap], include)
+
+    print(T)
+    return T[-1]
+
+
+knapsack_unbounded_tabulation_space_op_2([4, 4, 7, 1], [5, 2, 3, 1], 8)
 
 
 # using loop recursively
