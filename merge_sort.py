@@ -1,6 +1,4 @@
-def split_list(list):
-    midpoint = len(list) // 2
-    return list[:midpoint], list[midpoint:]
+
 
 def merge(left, right):
 
@@ -8,30 +6,31 @@ def merge(left, right):
     i = 0
     j = 0
 
-    while(i < len(left) and j < len(right)):
-        if(left[i] < right[j]):
+    while (i < len(left) and j < len(right)):
+        if (left[i] < right[j]):
             l.append(left[i])
-            i+=1
+            i += 1
         else:
             l.append(right[j])
-            j+=1
+            j += 1
 
-    while i < len(left): 
+    while i < len(left):
         l.append(left[i])
         i += 1
-    
-    while j < len(right): 
+
+    while j < len(right):
         l.append(right[j])
         j += 1
-    
+
     return l
+
 
 def merge_sort(list):
 
-    if len(list) <= 1: 
+    if len(list) <= 1:
         return list
 
-    left_half, right_half = split_list(list)
+    left_half, right_half = list[:len(list) // 2], list[len(list) // 2:]
     left = merge_sort(left_half)
     right = merge_sort(right_half)
 
@@ -39,4 +38,5 @@ def merge_sort(list):
 
     return sorted
 
-print("Sorted: ", merge_sort([12,52,10,1,45]))
+
+print("Sorted: ", merge_sort([12, 52, 10, 1, 45]))
