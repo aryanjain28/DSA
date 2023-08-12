@@ -12,13 +12,22 @@ class Solution(object):
         :rtype: int
         """
 
-        max_profit = 0
-        minimum = prices[0]
+        if len(prices) < 2:
+            return 0
 
-        for n in prices[1:]:
-            minimum = n if n < minimum else minimum
-            max_profit = n-minimum if n-minimum > max_profit else max_profit
-        return max_profit
+        mini = min(prices[0], prices[1])
+        prices[0] = 0
+        index = 1
+
+        while index < len(prices):
+            mini = min(mini, prices[index])
+            prices[index] = max(prices[index-1], prices[index]-mini)
+
+            index += 1
+
+        return prices[-1]
+        
+
 
         
 # @lc code=end
