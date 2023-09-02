@@ -28,10 +28,6 @@ class UnionFind:
                 self.rank[p1] += 1
 
         
-
-
-
-
 class Node:
     def __init__(self) -> None:
         self.val = -1
@@ -39,13 +35,14 @@ class Node:
 
 def findNumOfProvinces(roads: List[List[int]], n: int) -> int:
 
-    count = 0
-    visited = set()
+    uf = UnionFind()
 
     for n1 in range(1, n+1):
         for n2 in range(1, n+1):
-            if roads[n1-1][n2-1] == 1:
-                pass
+            if n1 != n2 and roads[n1-1][n2-1] == 1:
+                uf.union(n1, n2)
+
+    return len(set(uf.parent))
 
 
     
