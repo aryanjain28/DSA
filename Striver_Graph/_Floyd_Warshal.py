@@ -1,6 +1,9 @@
 
 
-def shortest_path_multisource(edges, nodes, t):
+# 1. Shortest Path Algorithm.
+# 2. Multi-source input.
+
+def floyd_warshal_algorithm(edges, nodes, t):
 
     cost_matrix = [[float("inf")]* nodes for _ in range(nodes)]
 
@@ -18,10 +21,9 @@ def shortest_path_multisource(edges, nodes, t):
                 if i == j or j == via: continue
                 cost_matrix[i][j] = min(cost_matrix[i][j], cost_matrix[i][via] + cost_matrix[via][j])
 
+    return cost_matrix
 
     
-
-
 
 
 edges = [[0,1,3],[1,2,1],[1,3,4],[2,3,1]]

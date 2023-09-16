@@ -30,13 +30,7 @@ class Solution:
             
         
         return distance
-        
-
-
-
-
 
 
 adj = [[(1, 1), (2, 6)], [(2, 3), (0, 1)], [(1, 3), (0, 6)]]
-
 Solution().dijkstra(3, adj, 2)

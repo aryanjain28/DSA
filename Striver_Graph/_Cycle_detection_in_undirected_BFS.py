@@ -9,7 +9,6 @@ def isCycle(V, adj):
 
 
     visited = set()
-
     for n in range(V):
 
         if n in visited: 
