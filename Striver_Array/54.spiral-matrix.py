@@ -15,40 +15,46 @@ class Solution(object):
         m = len(matrix)
         n = len(matrix[0])
 
+        top = 0
+        bottom = m-1
+
+        right = n-1
+        left = 0
+    
         res = []
-
-        def iterate(min_row, max_row, min_col, max_col):
-            temp = []
-            for i in range(min_row, max_row + 1, (-1 if min_row > max_row else 1)):
-                for j in range(min_col, max_col + 1, (-1 if min_col > max_col else 1)):
-                    temp.append(matrix[i][j])
-
-            return temp
-
-
-        direction = 0
         while len(res) < m * n:
 
-            d = direction % n
-            if d == 0:
-                min_row, max_row = 
-                min_col, max_col = 
-            elif d == 1:
-                min_row, max_row = min_row + 1, 
-                min_col, max_col = 
-            elif d == 2:
-                pass
-            else:
-                pass
+            i = top            
+            for j in range(left, right+1):
+                res.append(matrix[i][j])
+            top += 1
 
+
+            j = right
+            for i in range(top, bottom+1):
+                res.append(matrix[i][j])
+            right -= 1
+
+
+            i = bottom
+            for j in range(right, left-1, -1):
+                res.append(matrix[i][j])
+            bottom -= 1
+
+
+            j = left
+            for i in range(bottom, top-1, -1):
+                res.append(matrix[i][j])
+            left += 1
+
+        return res[:m*n]
+        
 
 
             
-            res.extend(iterate(min_row, max_row, min_col, max_col))
+            
 
-            direction += 1
 
-        
 
 
 
